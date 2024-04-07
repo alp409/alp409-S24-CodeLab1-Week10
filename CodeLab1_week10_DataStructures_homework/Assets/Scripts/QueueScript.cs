@@ -49,6 +49,14 @@ public class QueueScript : MonoBehaviour
                 //Debug.Log("Unknown track name: " + trackName);
                 return;
         }
+        
+        if (clip == null)
+        {
+            Debug.Log("AudioClip not assigned for track: " + trackName);
+            return;
+        }
+
+        audioSource.PlayOneShot(clip, volume);
     }
 
     // Start is called before the first frame update
