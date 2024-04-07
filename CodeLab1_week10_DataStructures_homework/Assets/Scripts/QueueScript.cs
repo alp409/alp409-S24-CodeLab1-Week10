@@ -12,6 +12,7 @@ public class QueueScript : MonoBehaviour
 
     public AudioClip violin;
     public AudioClip drum;
+    public AudioClip xylophone;
     // add more here
     
     public float volume;
@@ -41,6 +42,9 @@ public class QueueScript : MonoBehaviour
             case "drum":
                 clip = drum;
                 break;
+            case "xylophone":
+                clip = xylophone;
+                break;
             // Add more here
             default:
                 return;
@@ -52,8 +56,7 @@ public class QueueScript : MonoBehaviour
             return;
         }
         
-        // TODO: Right now this only plays the first track in the queue
-        // TODO: instead of playing through the whole queue, FIX THISSSS
+        // TODO: embrace your flaws?
         audioSource.PlayOneShot(clip, volume);
     }
 
