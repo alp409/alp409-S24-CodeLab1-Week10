@@ -8,13 +8,16 @@ using UnityEngine.UI;
 public class QueueScript : MonoBehaviour
 {
     // this queue audioQueue holds the order of buttons pressed
-    // queue will play when timer runs out
+    // queue will play when enter(?) is pressed
     private Queue<string> audioQueue = new Queue<string>();
+    public AudioSource audioSource;
 
-    public Text display; // can't add this to the canvas????
+    public AudioClip violin;
+    public AudioClip drum;
     
-    private float timer = 0;
-    private float timePerTurn = 10;
+    public float volume;
+    
+    //public Text display; // don't need this anymore?
 
     public void AddTrack(string track)
     {
@@ -29,15 +32,36 @@ public class QueueScript : MonoBehaviour
             return;
         }
 
-        string tr = audioQueue.Dequeue();
-        Debug.Log(tr);
-        // play queued tracks (use DeQueue?)
+        string trackName = audioQueue.Dequeue();
+        AudioClip clip = null;
+
+        // Assign AudioClip based on the track name
+        switch (trackName)
+        {
+            case "violin":
+                clip = violin;
+                break;
+            case "drum":
+                clip = drum;
+                break;
+            // Add more cases for additional tracks if needed
+            default:
+                //Debug.Log("Unknown track name: " + trackName);
+                return;
+        }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+            if (audioSource == null)
+            {
+                Debug.LogError("No AudioSource component found. Please assign one.");
+            }
+        }
     }
 
     // Update is called once per frame
@@ -47,8 +71,11 @@ public class QueueScript : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
-        
-        // call PlayTracks with button press
+
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            PlayTracks();
+        }
         
     }
 }
