@@ -7,18 +7,15 @@ using UnityEngine.UI;
 
 public class QueueScript : MonoBehaviour
 {
-    // this queue audioQueue holds the order of buttons pressed
-    // queue will play when enter(?) is pressed
     private Queue<string> audioQueue = new Queue<string>();
     public AudioSource audioSource;
 
     public AudioClip violin;
     public AudioClip drum;
+    // add more here
     
     public float volume;
     
-    //public Text display; // don't need this anymore?
-
     public void AddTrack(string track)
     {
         audioQueue.Enqueue(track);
@@ -35,7 +32,7 @@ public class QueueScript : MonoBehaviour
         string trackName = audioQueue.Dequeue();
         AudioClip clip = null;
 
-        // Assign AudioClip based on the track name
+        // assign button audio track here
         switch (trackName)
         {
             case "violin":
@@ -44,9 +41,8 @@ public class QueueScript : MonoBehaviour
             case "drum":
                 clip = drum;
                 break;
-            // Add more cases for additional tracks if needed
+            // Add more here
             default:
-                //Debug.Log("Unknown track name: " + trackName);
                 return;
         }
         
@@ -55,7 +51,9 @@ public class QueueScript : MonoBehaviour
             Debug.Log("AudioClip not assigned for track: " + trackName);
             return;
         }
-
+        
+        // TODO: Right now this only plays the first track in the queue
+        // TODO: instead of playing through the whole queue, FIX THISSSS
         audioSource.PlayOneShot(clip, volume);
     }
 

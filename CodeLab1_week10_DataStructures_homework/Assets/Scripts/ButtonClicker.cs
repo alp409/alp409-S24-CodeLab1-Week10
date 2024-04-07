@@ -4,18 +4,17 @@ using UnityEngine;
 
 public class ButtonClicker : MonoBehaviour
 {
-    public QueueScript queueScript; // Reference to the QueueScript
+    // reference to the QueueScript on Canvas
+    public QueueScript queueScript; 
     
     private void Start()
     {
-        // Find the QueueScript in the scene
         queueScript = GameObject.FindObjectOfType<QueueScript>();
     }
-
-    // Method to handle button click event
+    
     public void OnButtonClick(string instrument)
     {
-        // Add the instrument to the audioQueue in the QueueScript
+        // assigned in the inspector
         queueScript.AddTrack(instrument);
     }
 }
