@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using TreeEditor;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
 public class QueueScript : MonoBehaviour
@@ -13,7 +15,13 @@ public class QueueScript : MonoBehaviour
     public AudioClip violin;
     public AudioClip drum;
     public AudioClip xylophone;
-    // add more here
+    public AudioClip saxophone;
+    public AudioClip triangle;
+    public AudioClip tambourine;
+    public AudioClip cowbell;
+    public AudioClip guitar;
+    public AudioClip harp;
+    // add more beautiful sounds here
     
     public float volume;
     
@@ -44,6 +52,24 @@ public class QueueScript : MonoBehaviour
                 break;
             case "xylophone":
                 clip = xylophone;
+                break;
+            case "saxophone":
+                clip = saxophone;
+                break;
+            case "triangle":
+                clip = triangle;
+                break;
+            case "tambourine":
+                clip = tambourine;
+                break;
+            case "cowbell":
+                clip = cowbell;
+                break;
+            case "guitar":
+                clip = guitar;
+                break;
+            case "harp":
+                clip = harp;
                 break;
             // Add more here
             default:
@@ -76,11 +102,13 @@ public class QueueScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // press space to reset scene
         if (Input.GetKeyDown(KeyCode.Space))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
+        // press enter to play tracks
         if (Input.GetKeyDown(KeyCode.Return))
         {
             PlayTracks();
